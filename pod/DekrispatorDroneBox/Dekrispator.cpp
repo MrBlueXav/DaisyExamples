@@ -27,6 +27,7 @@
 #include "blepvco.h"
 #include "soundGen.h"
 
+//--------------------------------------------------------------------------
 using namespace daisysp;
 using namespace daisy;
 
@@ -38,15 +39,31 @@ bool stopSound = false;
 
 float oldk1, oldk2, k1, k2;
 
+//--------------------------------------------------------------------------
+
 void ConditionalParameter(float oldVal, float newVal, float &param,
 		float update);
 
+//--------------------------------------------------------------------------
+
 void Controls();
+
+//--------------------------------------------------------------------------
 
 static void AudioCallback(float *in, float *out, size_t size) {
 	Controls();
 
 	float yL, yR;
+
+		// for (size_t i = 0; i < size; i += 2) {
+		// 	computeSound(&yL, &yR);
+
+		// 	// left out
+		// 	out[i] = yL;
+
+		// 	// right out
+		// 	out[i + 1] = yR;
+		// }
 
 	if (!stopSound) {
 		for (size_t i = 0; i < size; i += 2) {
@@ -69,10 +86,10 @@ static void AudioCallback(float *in, float *out, size_t size) {
 	}
 }
 
+//**************************************************************************
+
 int main(void) {
 	// Set global variables
-	//float sample_rate;
-
 	oldk1 = oldk2 = 0;
 	k1 = k2 = 0;
 
@@ -82,6 +99,7 @@ int main(void) {
 
 	/* Initialize the on-board random number generator ! */
 	randomGen_init();
+	/* dekrispator synth init  */
 	Synth_Init();
 
 	// start callback
@@ -114,7 +132,7 @@ void UpdateLeds() {
 	oldk1 = k1;
 	oldk2 = k2;
 	pod.led1.Set(freeze, freeze, freeze);
-	pod.led2.Set(stopSound, stopSound, stopSound);
+	pod.led2.Set(stopSound, !stopSound, 0);
 	pod.UpdateLeds();
 }
 
@@ -122,7 +140,6 @@ void UpdateButtons() {
 	if (pod.button1.RisingEdge()) {
 		freeze = !freeze;
 	}
-
 	if (pod.button2.RisingEdge()) {
 		stopSound = !stopSound;
 	}
@@ -131,12 +148,11 @@ void UpdateButtons() {
 void Controls() {
 	pod.UpdateAnalogControls();
 	pod.DebounceControls();
-
 	UpdateEncoder();
-
 	UpdateKnobs();
-
 	UpdateButtons();
-
 	UpdateLeds();
 }
+
+/*--------------------------------END ------------------------------------*/
+

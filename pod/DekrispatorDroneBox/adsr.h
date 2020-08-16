@@ -48,8 +48,8 @@ typedef struct
 	float	lastOutput_;
 	float 	target_;
 	float	rate_;
-	int 	state_;
-	uint32_t cnt_; // sample counter for on state
+	int32_t	state_;
+	int32_t cnt_; // sample counter for on state
 
 
 } ADSR_t ;
