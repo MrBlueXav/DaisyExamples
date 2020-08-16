@@ -37,12 +37,9 @@ Oscillator_t op1 _CCM_;
 Oscillator_t op2 _CCM_;
 Oscillator_t op3 _CCM_;
 Oscillator_t op4 _CCM_;
-
 Oscillator_t vibr_lfo _CCM_;
-
 Oscillator_t filt_lfo _CCM_;
 Oscillator_t filt2_lfo _CCM_;
-
 Oscillator_t amp_lfo _CCM_;
 
 static float_t a[PARTIALS_NUMBER + 1] _CCM_; // additive generator amplitudes

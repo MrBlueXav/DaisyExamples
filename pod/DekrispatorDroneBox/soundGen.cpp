@@ -32,6 +32,7 @@
 
 extern bool					demoMode;
 extern bool					freeze;
+extern bool					stopSound;
 
 extern Sequencer_t 			seq;
 extern NoteGenerator_t 		noteG;
