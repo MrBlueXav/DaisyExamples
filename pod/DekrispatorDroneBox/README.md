@@ -1,7 +1,7 @@
 # Description
 Experimental music synthesizer or autonomous noise box.
 
-*Demo mode* : The synth works on its own, sounds are perpetually changing. If you press the user button, sounds and effects stop always changing and the red LED lights on : the synth parameters are frozen. Press once again the user button and the red LED lights off : unfreeze.
+*Demo mode* : The synth works on its own, sounds are perpetually changing. If you press switch 1, sounds and effects stop always changing and the LED1 goes white : the synth parameters are frozen. Press once again switch1 and LED1 lights off : unfreeze.
 
 **Dekrispator features** :
 
