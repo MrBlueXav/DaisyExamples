@@ -31,7 +31,11 @@
 using namespace daisysp;
 using namespace daisy;
 
+extern Sequencer_t seq;
+
 static DaisyPod pod;
+float sample_rate;
+Parameter p_knob1, p_knob2;
 
 bool freeze = false;
 bool demoMode = true;
@@ -86,29 +90,7 @@ static void AudioCallback(float *in, float *out, size_t size) {
 	}
 }
 
-//**************************************************************************
 
-int main(void) {
-	// Set global variables
-	oldk1 = oldk2 = 0;
-	k1 = k2 = 0;
-
-	//Init everything
-	pod.Init();
-	//sample_rate = pod.AudioSampleRate();
-
-	/* Initialize the on-board random number generator ! */
-	randomGen_init();
-	/* dekrispator synth init  */
-	Synth_Init();
-
-	// start callback
-	pod.StartAdc();
-	pod.StartAudio(AudioCallback);
-
-	while (1) {
-	}
-}
 
 //Updates values if knob had changed
 void ConditionalParameter(float oldVal, float newVal, float &param,
@@ -126,6 +108,12 @@ void UpdateEncoder() {
 void UpdateKnobs() {
 	k1 = pod.knob1.Process();
 	k2 = pod.knob2.Process();
+	//ConditionalParameter(oldk1, k1, seq.tempo, k1);
+	seq.tempo = 480 * k1 + 20;
+	seq.steptime = lrintf(sample_rate * 60 / seq.tempo);
+
+	oldk1 = k1;
+    oldk2 = k2;
 }
 
 void UpdateLeds() {
@@ -152,6 +140,31 @@ void Controls() {
 	UpdateKnobs();
 	UpdateButtons();
 	UpdateLeds();
+}
+
+//**************************************************************************
+
+int main(void) {
+	
+	oldk1 = oldk2 = 0;
+	k1 = k2 = 0;
+
+	//Init everything
+	pod.Init();
+	sample_rate = pod.AudioSampleRate();
+	p_knob1.Init(pod.knob1, 20, 500, Parameter::LINEAR);
+
+	/* Initialize the on-board random number generator ! */
+	randomGen_init();
+	/* dekrispator synth init  */
+	Synth_Init();
+
+	// start callback
+	pod.StartAdc();
+	pod.StartAudio(AudioCallback);
+
+	while (1) {
+	}
 }
 
 /*--------------------------------END ------------------------------------*/

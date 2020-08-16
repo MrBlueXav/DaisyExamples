@@ -7,6 +7,8 @@ If you press switch 1, sounds and effects stop always changing and the LED1 goes
 
 Switch2 is for mute.
 
+Knob1 controls tempo.
+
 **Dekrispator features** :
 
  * monophonic

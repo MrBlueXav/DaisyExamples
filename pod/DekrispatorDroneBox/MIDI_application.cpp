@@ -55,8 +55,8 @@ void MagicPatch(uint8_t val) /* random sound parameters */
 			FM_OP3_modInd_set(MIDIrandVal());
 			FM_OP4_freq_set(MIDIrandVal());
 			FM_OP4_modInd_set(MIDIrandVal());
+			
 		} else if (snd == DRIFTERS) {
-			//STM_EVAL_LEDOn(LED_Green);
 			Drifter_amp_set(MIDIrandVal());
 			Drifter_minFreq_set(MIDIrandVal());
 			Drifter_maxFreq_set(MIDIrandVal());
