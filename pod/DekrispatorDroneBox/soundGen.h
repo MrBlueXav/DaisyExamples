@@ -118,7 +118,7 @@ void soundGenInit(void);
 void soundGenNewWave(void);
 void Synth_Init(void);
 
-void make_sound(uint16_t *buf , uint16_t len);
+//void make_sound(uint16_t *buf , uint16_t len);
 void computeSound(float *yL, float *yR);
 void OpsRandFreq(void);
 

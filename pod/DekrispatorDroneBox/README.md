@@ -9,6 +9,8 @@ Switch2 is for mute.
 
 Knob1 controls tempo.
 
+Knob2 controls FX : first no fx then just delay then delay + phaser and finally delay + phaser + chorus. (on/off control)
+
 **Dekrispator features** :
 
  * monophonic
